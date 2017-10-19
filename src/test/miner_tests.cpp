@@ -292,7 +292,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vin[0].scriptSig << OP_1;
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vout[0].nValue = BLOCKSUBSIDY;
-    for (unsigned int i = 0; i < 128; ++i)
+    for (unsigned int i = 0; i < 256; ++i)
     {
         tx.vout[0].nValue -= LOWFEE;
         hash = tx.GetHash();
