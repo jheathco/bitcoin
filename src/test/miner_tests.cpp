@@ -30,11 +30,6 @@ static CFeeRate blockMinFeeRate = CFeeRate(DEFAULT_BLOCK_MIN_TX_FEE);
 
 static BlockAssembler AssemblerForTest(const CChainParams& params) {
     BlockAssembler::Options options;
-
-#warning hack
-    //options.nBlockMaxWeight = MAX_BLOCK_WEIGHT;
-    options.nBlockMaxSize = MAX_BLOCK_SERIALIZED_SIZE;
-    options.blockMinFeeRate = blockMinFeeRate;
     return BlockAssembler(params, options);
 }
 
@@ -292,7 +287,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vin[0].scriptSig << OP_1;
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vout[0].nValue = BLOCKSUBSIDY;
-    for (unsigned int i = 0; i < 256; ++i)
+    for (unsigned int i = 0; i < 128; ++i)
     {
         tx.vout[0].nValue -= LOWFEE;
         hash = tx.GetHash();
